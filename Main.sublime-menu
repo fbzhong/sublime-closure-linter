@@ -19,5 +19,40 @@
                 ]
             }
         ]
+    },
+    {
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "id": "package-settings",
+                "children":
+                [
+                    {
+                        "caption": "Closure Linter",
+                        "children":
+                        [
+                            {
+                                "caption": "Settings – Default",
+                                "command": "open_file",
+                                "args":
+                                {
+                                    "file": "${packages}/sublime-closure-linter/sublime-closure-linter.sublime-settings"
+                                }
+                            },
+                            {
+                                "caption": "Settings – User",
+                                "command": "open_file",
+                                "args":
+                                {
+                                    "file": "${packages}/User/sublime-closure-linter.sublime-settings"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     }
 ]

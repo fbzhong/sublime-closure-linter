@@ -1,0 +1,10 @@
+{
+    // Path to the gjslint.
+    "gjslint_path": "gjslint",
+
+    // Flags pass to gjslint.
+    "gjslint_flags": "",
+
+    // debug flag.
+    "debug": false
+}
