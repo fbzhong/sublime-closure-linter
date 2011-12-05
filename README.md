@@ -18,6 +18,8 @@ Features
 
 - Highlight error line by click on the result view
 
+- Ignore specific Errors in result view
+
 - Cross platform: support Windows, Linux and Mac OS X
 
 Requirements
@@ -60,6 +62,29 @@ Settings
 -------------
 
 Settings can be opened via the Command Palette, or the Preferences > Package Settings > Closure Linter > Settings – User menu entry.
+
+    {
+        // Path to the gjslint.
+        "gjslint_path": "gjslint",
+
+        // Flags pass to gjslint.
+        "gjslint_flags": "",
+
+        // Path to the fixjsstyle.
+        "fixjsstyle_path": "fixjsstyle",
+
+        // Flags pass to fixjsstyle.
+        "fixjsstyle_flags": "",
+
+        // Ignore errors, regex.
+        "ignore_errors":
+        [
+            // "Expected an identifier and instead saw 'undefined' \(a reserved word\)"
+        ],
+
+        // debug flag.
+        "debug": false
+    }
 
 License
 -------------
