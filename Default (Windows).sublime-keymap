@@ -1,0 +1,7 @@
+[
+    {
+        "keys": ["ctrl+shift+j"],
+        "__doc__": "Run Google Closure Linter",
+        "command": "closure_linter"
+    }
+]

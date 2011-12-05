@@ -1,0 +1,23 @@
+[
+    {
+        "id": "tools",
+        "children":
+        [
+            {
+                "caption": "Lint",
+                "id": "lint",
+                "children":
+                [
+                    {
+                        "caption": "Run Closure Linter",
+                        "command": "closure_linter"
+                    },
+                    {
+                        "caption": "Show Closure Linter Result",
+                        "command": "show_closure_linter_result"
+                    }
+                ]
+            }
+        ]
+    }
+]

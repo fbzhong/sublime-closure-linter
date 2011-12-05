@@ -1,0 +1,10 @@
+[
+    {
+        "caption": "Closure Linter: Run Closure Linter",
+        "command": "closure_linter"
+    },
+    {
+        "caption": "Closure Linter: Show Closure Linter Result",
+        "command": "show_closure_linter_result"
+    }
+]
