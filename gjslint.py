@@ -79,16 +79,19 @@ class ClosureLinterCommand(sublime_plugin.WindowCommand):
       for line in data.split('\n'):
         if len(line) == 0:
           continue
+        ignored = False
         for rule in self.ignore_errors:
-          if re.search(rule, line) == None:
-            text += line + '\n'
-          else:
+          if re.search(rule, line):
+            ignored = True
             self.ignored_error_count += 1
             if self.debug:
               print "text match line "
               print "rule = " + rule
               print "line = " + line
               print "---------"
+            break
+        if ignored == False:
+          text += line + '\n'
 
     self.show_tests_panel()
     selection_was_at_end = (len(self.output_view.sel()) == 1 and self.output_view.sel()[0] == sublime.Region(self.output_view.size()))
