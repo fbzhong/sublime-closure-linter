@@ -33,7 +33,7 @@ class ClosureLinterCommand(sublime_plugin.WindowCommand):
     self.init_tests_panel()
 
     AsyncProcess(cmd, self)
-    StatusProcess('Starting Closure Lint for file ' + file_name, self)
+    StatusProcess('Starting Closure Linter for file ' + file_name, self)
 
     ClosureLinterEventListener.disabled = True
 
