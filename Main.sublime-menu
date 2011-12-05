@@ -13,6 +13,10 @@
                         "command": "closure_linter"
                     },
                     {
+                        "caption": "Fix JavaScript Style",
+                        "command": "fix_js_style"
+                    },
+                    {
                         "caption": "Show Closure Linter Result",
                         "command": "show_closure_linter_result"
                     }

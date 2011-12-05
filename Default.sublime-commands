@@ -8,6 +8,10 @@
         "command": "show_closure_linter_result"
     },
     {
+        "caption": "Closure Linter: Fix JavaScript Style",
+        "command": "fix_js_style"
+    },
+    {
         "caption": "Preferences: Closure Linter Settings – Default",
         "command": "open_file", "args":
         {

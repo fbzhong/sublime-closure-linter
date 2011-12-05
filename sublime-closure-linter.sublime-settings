@@ -5,6 +5,12 @@
     // Flags pass to gjslint.
     "gjslint_flags": "",
 
+    // Path to the fixjsstyle.
+    "fixjsstyle_path": "fixjsstyle",
+
+    // Flags pass to fixjsstyle.
+    "fixjsstyle_flags": "",
+
     // debug flag.
     "debug": false
 }

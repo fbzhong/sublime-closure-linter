@@ -3,5 +3,10 @@
         "keys": ["ctrl+shift+j"],
         "__doc__": "Run Google Closure Linter",
         "command": "closure_linter"
+    },
+    {
+        "keys": ["ctrl+alt+shift+j"],
+        "__doc__": "Fix JavaScript Style",
+        "command": "fix_js_style"
     }
 ]
