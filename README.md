@@ -53,6 +53,11 @@ Screenshots
 
 ![](https://github.com/fbzhong/sublime-closure-linter/raw/master/images/screenshot.png)
 
+Settings
+-------------
+
+Settings can be opened via the Command Palette, or the Preferences > Package Settings > Closure Linter > Settings – User menu entry.
+
 License
 -------------
 
