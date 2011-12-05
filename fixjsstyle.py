@@ -1,6 +1,7 @@
 import os
 import re
 import shutil
+import tempfile
 import sublime
 import sublime_plugin
 from const import *
@@ -8,32 +9,39 @@ from listener import *
 from statusprocess import *
 from asyncprocess import *
 
-class ShowClosureLinterResultCommand(sublime_plugin.WindowCommand):
-  """show closure linter result"""
+class FixJsStyleCommand(sublime_plugin.WindowCommand):
   def run(self):
-    self.window.run_command("show_panel", {"panel": "output."+RESULT_VIEW_NAME})
-
-class ClosureLinterCommand(sublime_plugin.WindowCommand):
-  def run(self):
-    s = sublime.load_settings(SETTINGS_FILE)
-
     file_path = self.window.active_view().file_name()
     file_name = os.path.basename(file_path)
-    cmd = s.get('gjslint_path', 'jslint') + ' ' + s.get('gjslint_flags', '') + ' "' + file_path + '"'
-
-    if s.get('debug', False) == True:
-      print "DEBUG: " + str(cmd)
 
     self.buffered_data = ''
     self.file_path = file_path
     self.file_name = file_name
     self.is_running = True
     self.tests_panel_showed = False
+    self.file_view = self.window.active_view()
 
     self.init_tests_panel()
 
+    if file_name.endswith('.js') == False:
+      self.append_data(None, "fixjslint can only be used for JavaScript file.", True)
+      return
+
+    # save file.
+    self.file_view.run_command('save')
+
+    # make a copy.
+    self.target_file_path = os.path.join(tempfile.gettempdir(), self.file_name)
+    shutil.copyfile(self.file_path, self.target_file_path)
+
+    s = sublime.load_settings(SETTINGS_FILE)
+    cmd = s.get('fixjsstyle_path', 'fixjsstyle') + ' ' + s.get('fixjsstyle_flags', '') + ' "' + self.target_file_path + '"'
+
+    if s.get('debug', False) == True:
+      print "DEBUG: " + str(cmd)
+
     AsyncProcess(cmd, self)
-    StatusProcess('Starting Closure Linter for file ' + file_name, self)
+    StatusProcess('Starting Fix Javascript Style for file ' + file_name, self)
 
     ClosureLinterEventListener.disabled = True
 
@@ -59,7 +67,7 @@ class ClosureLinterCommand(sublime_plugin.WindowCommand):
 
   def append_data(self, proc, data, flush=False):
     self.buffered_data = self.buffered_data + data.decode("utf-8")
-    str = self.buffered_data.replace(self.file_path, self.file_name).replace('\r\n', '\n').replace('\r', '\n')
+    str = self.buffered_data.replace(self.target_file_path, self.file_name).replace('\r\n', '\n').replace('\r', '\n')
 
     if flush == False:
       rsep_pos = str.rfind('\n')
@@ -87,9 +95,33 @@ class ClosureLinterCommand(sublime_plugin.WindowCommand):
 
   def proc_terminated(self, proc):
     if proc.returncode == 0:
-      msg = self.file_name + ' lint free!'
+      msg = self.file_name + ' fixjsstyle done!'
+      self.replace_file_content()
     else:
       msg = ''
     self.append_data(proc, msg, True)
 
+    # remove file.
+    os.remove(self.target_file_path)
+
     ClosureLinterEventListener.disabled = False
+
+  def replace_file_content(self):
+    # open target file.
+    f = open(self.target_file_path, 'r')
+
+    # start to replace
+    sel_region = self.file_view.sel()[0]
+
+    edit = self.file_view.begin_edit()
+    self.file_view.erase(edit, sublime.Region(0, self.file_view.size()))
+    self.file_view.insert(edit, self.file_view.size(), f.read())
+    self.file_view.end_edit(edit)
+
+    self.file_view.show_at_center(sel_region)
+
+    self.file_view.run_command('save')
+
+    # done.
+    f.close()
+

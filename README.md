@@ -14,6 +14,8 @@ Features
 
 - Closure Linter: Show Closure Linter Result
 
+- Closure Linter: Fix JavaScript Style
+
 - Highlight error line by click on the result view
 
 - Cross platform: support Windows, Linux and Mac OS X
@@ -27,23 +29,24 @@ Installation
 -------------
 
 - Using Package Control http://wbond.net/sublime_packages/package_control
-    > Add Repository: https://github.com/fbzhong/sublime-closure-linter
+    - Add Repository: https://github.com/fbzhong/sublime-closure-linter
 
 - Download and extract to Sublime Text 2 Packages folder
-    > Windows:  %APPDATA%\Sublime Text 2\Packages
-    > Mac OS X: ~/Library/Application Support/Sublime Text 2/Packages
-    > Linux:    ~/.config/sublime-text-2/Packages
+    - Windows:  %APPDATA%\Sublime Text 2\Packages
+    - Mac OS X: ~/Library/Application Support/Sublime Text 2/Packages
+    - Linux:    ~/.config/sublime-text-2/Packages
 
 How to use?
 -------------
 
 - Using the Command Palette (Windows and Linux: Ctrl+Shift+P, OSX: Command+Shift+P) then search for:
-
-    - Closure Linter: Run Closure Linter (ctrl+shift+j)
+    - Closure Linter: Run Closure Linter   (ctrl+shift+j)
+    - Closure Linter: Fix JavaScript Style (ctrl+alt+shift+j)
     - Closure Linter: Show Closure Linter Result
 
 - Find them in Tools menu:
     - Tools -> Lint -> Run Closure Linter
+    - Tools -> Lint -> Fix JavaScript Style
     - Tools -> Lint -> Show Closure Linter Result
 
 Open up a .js file and hit ctrl+shift+j to run Closure Linter. An new output panel will appear giving you the Closure Linter results:
