@@ -31,7 +31,7 @@ class ClosureLinterCommand(sublime_plugin.WindowCommand):
 
     self.init_tests_panel()
 
-    cmd = s.get('gjslint_path', 'jslint') + ' ' + s.get('gjslint_flags', '') + ' "' + file_path + '"'
+    cmd = '"' + s.get('gjslint_path', 'jslint') + '" ' + s.get('gjslint_flags', '') + ' "' + file_path + '"'
     if self.debug:
       print "DEBUG: " + str(cmd)
 
